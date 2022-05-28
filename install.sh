@@ -21,7 +21,7 @@ echo '?> '>>index.php
 echo '<body>'>>index.php
 echo '</html>'>>index.php
 
-wget https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip
+wget https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
 unzip -d v2ray1 v2ray-linux-64.zip
 cd v2ray1
 chmod 777 *
@@ -33,7 +33,7 @@ rm -rf $HOME/cloudfoundry/v2ray1
 uuid=`cat /proc/sys/kernel/random/uuid`
 
 path=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
-echo '{"inbounds":[{"port":8080,"protocol":"vmess","settings":{"clients":[{"id":"'$uuid'","alterId":64}]},"streamSettings":{"network":"ws","wsSettings":{"path":"/'$path'"}}}],"outbounds":[{"protocol":"freedom","settings":{}}]}'>$HOME/cloudfoundry/config.json
+echo '{"inbounds":[{"port":8080,"protocol":"vmess","settings":{"clients":[{"id":"'$uuid'","alterId":32}]},"streamSettings":{"network":"ws","wsSettings":{"path":"/'$path'"}}}],"outbounds":[{"protocol":"freedom","settings":{}}]}'>$HOME/cloudfoundry/config.json
 echo 'applications:'>>manifest.yml
 echo '- path: .'>>manifest.yml
 echo '  command: '/app/htdocs/v2ray'' >>manifest.yml
